@@ -1,0 +1,72 @@
+root: true
+
+parser: '@typescript-eslint/parser'
+
+parserOptions:
+    sourceType: module
+    ecmaVersion: latest
+    project:
+        - './tsconfig.json'
+        - './tsconfig.eslint.json'
+
+env:
+    browser: true
+    node: true
+    es2021: true
+
+extends:
+    - eslint:recommended
+    - plugin:@typescript-eslint/recommended
+    - plugin:cypress/recommended
+    - plugin:jest-dom/recommended
+    - plugin:testing-library/react
+    - prettier
+
+plugins:
+    - react
+    - react-hooks
+    - '@typescript-eslint'
+
+overrides:
+    - files:
+          - '*.ts'
+          - '*.tsx'
+      rules:
+          'testing-library/await-async-query': off
+          'testing-library/prefer-screen-queries': off
+
+settings:
+    react:
+        version: detect
+
+rules:
+    no-unused-vars: off
+    '@typescript-eslint/no-unused-vars':
+        - error
+        - argsIgnorePattern: ^_
+          varsIgnorePattern: ^_
+
+    no-console:
+        - error
+        - allow:
+              - warn
+              - error
+
+    no-multiple-empty-lines:
+        - error
+        - max: 2
+          maxEOF: 0
+
+    operator-assignment:
+        - error
+        - always
+
+    camelcase: error
+
+    no-var: error
+
+    prefer-const:
+        - error
+        - destructuring: all
+
+    '@typescript-eslint/no-unnecessary-condition': error
