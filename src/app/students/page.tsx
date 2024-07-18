@@ -1,23 +1,34 @@
-import React from 'react';
+'use client';
+
 import Header from '@/components/Header';
-import UserList from '@/components/UserList';
-import { User } from '@/types/user';
+import StudentList from '@/components/StudentList';
+import React, { useEffect, useState } from 'react';
+import { Student } from '@/types/student';
+import { getStudents } from '../../lib/firestore';
 
-const users: User[] = [
-	{ id: 1, name: 'Ivan Ivanov', project: 'Artificial Intelligence in microwave ovens' },
-	{ id: 2, name: 'Petr Petrov', project: 'Thesis supervision Gamified System Design' },
-	{ id: 3, name: 'Oleg Olegov', project: 'The solver of quadratic equations' },
-	{ id: 4, name: 'Ivan Ivanov', project: 'Artificial Intelligence in microwave ovens' },
-	{ id: 5, name: 'Ivan Ivanov', project: 'Artificial Intelligence in microwave ovens' },
-];
+// let studentsCache: Student[] | null = [];
 
-const DashboardPage = () => {
+const StudentsPage = () => {
+	const [students, setStudents] = useState<Student[]>([]);
+
+	useEffect(() => {
+		const fetchStudents = async () => {
+			const studentsData = await getStudents();
+			setStudents(studentsData);
+		};
+
+		// studentsCache = students;
+		fetchStudents();
+	}, []);
+
+	console.log(students);
+
 	return (
 		<div>
 			<Header />
-			<UserList users={users} />
+			<StudentList students={students} />
 		</div>
 	);
 };
 
-export default DashboardPage;
+export default StudentsPage;

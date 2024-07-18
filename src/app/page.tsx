@@ -1,12 +1,8 @@
 import React from 'react';
-import LoginForm from '@/components/LoginForm';
+import LoginForm from '@/components/LoginForm/LoginForm';
 
 const HomePage = () => {
-	return (
-		<div className="login-page">
-			<LoginForm />
-		</div>
-	);
+	return <LoginForm />;
 };
 
 export default HomePage;

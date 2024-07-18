@@ -1,4 +1,4 @@
-name: Build and Deploy to GitHub Pages
+name: Lint and Fix
 
 on:
     push:
@@ -20,9 +20,6 @@ jobs:
 
             - name: Install dependencies
               run: npm install
-
-            - name: Fix code
-              run: npm run fix
 
             - name: Lint code
               run: npm run lint
