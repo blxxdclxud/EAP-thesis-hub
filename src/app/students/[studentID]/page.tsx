@@ -1,28 +1,26 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import Header from '@/components/Header';
-import StudentDetailsPage from '@/components/StudentDetails';
+import Header from '@/components/Header/Header';
+import StudentDetailsPage from '@/components/StudentDetails/StudentDetails';
 import { Student } from '@/types/student';
 import { getStudentById } from '@/lib/firestore';
 
-const StudentPage = () => {
+const StudentPage = (): React.JSX.Element | null => {
 	const params = useParams();
-	const studentID = params.studentID;
+	const studentID: string = params.studentID as string;
 	console.log(studentID);
 
-	// const router = useRouter();
-	// const { studentID } = router.query;
 	const [student, setStudent] = useState<Student | null>(null);
 
-	useEffect(() => {
+	useEffect((): void => {
 		if (studentID) {
-			const fetchStudent = async () => {
+			const fetchStudent = async (): Promise<void> => {
 				try {
-					const studentData = await getStudentById(studentID as string);
+					const studentData: Student = await getStudentById(studentID as string);
 					setStudent(studentData);
 				} catch (error) {
-					console.error(error.message);
+					console.error((error as Error).message);
 				}
 			};
 
@@ -31,7 +29,7 @@ const StudentPage = () => {
 	}, [studentID]);
 
 	if (!student) {
-		return;
+		return null;
 	}
 
 	return (

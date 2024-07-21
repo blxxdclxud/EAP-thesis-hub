@@ -16,12 +16,21 @@
 		"check": "prettier --check ."
 	},
 	"dependencies": {
+		"@fortawesome/fontawesome-free": "^6.6.0",
 		"firebase": "^10.12.3",
+		"firebase-admin": "^12.2.0",
+		"js-cookie": "^3.0.5",
+		"libphonenumber-js": "^1.11.4",
 		"next": "14.2.5",
+		"next-firebase-auth-edge": "^1.6.2",
 		"react": "^18",
 		"react-dom": "^18"
 	},
 	"devDependencies": {
+		"@fortawesome/free-solid-svg-icons": "^6.6.0",
+		"@fortawesome/react-fontawesome": "^0.2.2",
+		"@next/eslint-plugin-next": "^14.2.5",
+		"@types/js-cookie": "^3.0.6",
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
@@ -33,12 +42,14 @@
 		"eslint-plugin-cypress": "^3.3.0",
 		"eslint-plugin-jest-dom": "^5.4.0",
 		"eslint-plugin-testing-library": "^6.2.2",
+		"node-polyfill-webpack-plugin": "^4.0.0",
 		"npm-run-all": "^4.1.5",
 		"postcss": "^8",
 		"prettier": "^3.3.2",
+		"stream-browserify": "^3.0.0",
 		"tailwindcss": "^3.4.1",
 		"ts-node": "^10.9.2",
 		"tsx": "^4.16.2",
-		"typescript": "^5.0.0"
+		"typescript": "5.0"
 	}
 }

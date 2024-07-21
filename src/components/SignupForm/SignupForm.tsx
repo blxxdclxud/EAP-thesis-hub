@@ -1,18 +1,16 @@
+'use client';
+
 import React, { useState } from 'react';
 import styles from './SignupForm.module.css';
-import { useRouter } from 'next/router';
-// import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { db } from '../../firebaseConfig';
+import { useRouter } from 'next/navigation';
+import { createUserWithEmailAndPassword, AuthError } from 'firebase/auth';
+import { auth, db } from '../../firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
-
-interface Student {
-	name: string;
-	email: string;
-	number: string;
-	about: string;
-	labs: string[];
-	works: string[];
-}
+import { Work } from '../../types/work';
+import { Student } from '../../types/student';
+import { parsePhoneNumber, isValidPhoneNumber, PhoneNumber } from 'libphonenumber-js';
+import Cookies from 'js-cookie';
+import { UserCredential } from 'firebase/auth';
 
 const SignupForm: React.FC = () => {
 	const [name, setName] = useState('');
@@ -21,8 +19,7 @@ const SignupForm: React.FC = () => {
 	const [passwordConfirmation, setPasswordConfirmation] = useState('');
 	const [number, setNumber] = useState('');
 	const [about, setAbout] = useState('');
-	const [labs, setLabs] = useState<string[]>(['']);
-	const [works, setWorks] = useState<string[]>(['']);
+	const [works, setWorks] = useState<Work[]>([{ title: '' }]);
 	const [error, setError] = useState('');
 	const router = useRouter();
 
@@ -33,41 +30,63 @@ const SignupForm: React.FC = () => {
 			setError('Passwords do not match');
 			return;
 		}
-
 		try {
-			// const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-			// const user = userCredential.user;
+			let phoneNumber: PhoneNumber;
+			try {
+				phoneNumber = parsePhoneNumber(number);
+			} catch (e: unknown) {
+				setError('Invalid phone number');
+				return;
+			}
+
+			if (!isValidPhoneNumber(phoneNumber.number)) {
+				setError('Invalid phone number');
+				return;
+			}
+
+			const userCredential: UserCredential = await createUserWithEmailAndPassword(
+				auth,
+				email,
+				password,
+			);
+			const token = (await userCredential.user.uid) as string;
 
 			const student: Student = {
+				token: token,
 				name,
 				email,
 				number,
 				about,
-				labs,
 				works,
 			};
 
-			await addDoc(collection(db, 'students'), student);
+			const docRef = await addDoc(collection(db, 'students'), student);
+			const studentId = docRef.id;
+			console.log('User and student document created successfully with ID:', studentId);
 
-			console.log('User and student document created successfully');
-			router.push('/dashboard');
+			Cookies.set('token', token);
+			Cookies.set('id', studentId);
+			Cookies.set('name', name);
+
+			router.push('/students');
 		} catch (error) {
-			console.error('Error signing up:', error);
-			setError('Failed to sign up');
+			if ((error as AuthError).code === 'auth/email-already-in-use') {
+				setError('The email address is already in use by another account.');
+			} else {
+				console.error('Error signing up:', error);
+				setError('Failed to sign up');
+			}
 		}
-	};
-
-	const handleLabChange = (index: number, value: string) => {
-		const newLabs = [...labs];
-		newLabs[index] = value;
-		setLabs(newLabs);
 	};
 
 	const handleWorkChange = (index: number, value: string) => {
 		const newWorks = [...works];
-		newWorks[index] = value;
+		newWorks[index].title = value;
 		setWorks(newWorks);
 	};
+
+	const addNewWork = () => setWorks([...works, { title: '' }]);
+	const removeLastWork = () => setWorks(works.slice(0, -1));
 
 	return (
 		<div className={styles.container}>
@@ -123,6 +142,9 @@ const SignupForm: React.FC = () => {
 						required
 						className={styles.input}
 					/>
+					<small className={styles.hint}>
+						Phone number must be in the format +123456789
+					</small>
 				</div>
 				<div className={styles.inputContainer}>
 					<textarea
@@ -133,20 +155,21 @@ const SignupForm: React.FC = () => {
 						className={styles.textarea}
 					/>
 				</div>
-				<div className={styles.inputContainer}>
-					<label>Labs:</label>
-					{labs.map((lab, index) => (
-						<input
-							key={index}
-							type="text"
-							placeholder="Lab name"
-							value={lab}
-							onChange={(e) => handleLabChange(index, e.target.value)}
-							required
-							className={styles.input}
-						/>
-					))}
-				</div>
+				{/*<div className={styles.inputContainer}>*/}
+				{/*	<label>Labs:</label>*/}
+				{/*	{labs.map((lab, index) => (*/}
+				{/*		<input*/}
+				{/*			key={index}*/}
+				{/*			type="text"*/}
+				{/*			placeholder="Lab name"*/}
+				{/*			value={lab}*/}
+				{/*			onChange={(e) => handleLabChange(index, e.target.value)}*/}
+				{/*			required*/}
+				{/*			className={styles.input}*/}
+				{/*		/>*/}
+				{/*	))}*/}
+				{/*	<button type="button" onClick={addNewLab} className={styles.addButton}>Add Lab</button>*/}
+				{/*</div>*/}
 				<div className={styles.inputContainer}>
 					<label>Works:</label>
 					{works.map((work, index) => (
@@ -154,12 +177,24 @@ const SignupForm: React.FC = () => {
 							key={index}
 							type="text"
 							placeholder="Work title"
-							value={work}
+							value={work.title}
 							onChange={(e) => handleWorkChange(index, e.target.value)}
 							required
 							className={styles.input}
 						/>
 					))}
+					<div className={styles.workButtons}>
+						<button type="button" onClick={addNewWork} className={styles.addButton}>
+							Add Work
+						</button>
+						<button
+							type="button"
+							onClick={removeLastWork}
+							className={styles.removeButton}
+						>
+							Remove Last Work
+						</button>
+					</div>
 				</div>
 				<button type="submit" className={styles.button}>
 					Sign Up

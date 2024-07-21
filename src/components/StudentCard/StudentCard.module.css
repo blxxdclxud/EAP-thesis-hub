@@ -1,0 +1,49 @@
+.userCard {
+	border: 1px solid #ddd;
+	padding: 20px;
+	margin: 10px;
+	width: 200px;
+	text-align: center;
+	transition:
+		transform 0.3s,
+		box-shadow 0.3s;
+}
+
+.profilePlaceholder {
+	width: 100px;
+	height: 100px;
+	margin: 0 auto 10px;
+	background-color: #ddd;
+	border-radius: 50%;
+}
+
+.userCard h2 {
+	font-size: 1.5em;
+	margin: 10px 0;
+}
+
+.userCard p {
+	font-size: 1em;
+	color: #666;
+}
+
+.viewDetailsButton {
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+	transition:
+		background-color 0.3s,
+		transform 0.3s;
+}
+
+.viewDetailsButton:hover {
+	background-color: #45a049;
+	transform: scale(1.05);
+}
+
+.userCard:hover {
+	transform: scale(1.05);
+	box-shadow: 0 4px 8px #3f572c;
+}

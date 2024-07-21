@@ -1,0 +1,39 @@
+.footer {
+	background-color: #4caf50;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	position: relative;
+}
+
+.contactInfo {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.contactItem {
+	margin: 10px 0;
+}
+
+.contactLink {
+	color: white;
+	text-decoration: none;
+	font-size: 1.2em;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.contactLink i {
+	font-size: 1.5em;
+}
+
+.contactLink:hover {
+	color: #e0e0e0;
+}
+
+@media (min-width: 768px) {
+	.footer {
+		padding: 30px;
+	}
+}

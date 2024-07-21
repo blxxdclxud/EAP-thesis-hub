@@ -1,8 +1,14 @@
 import React from 'react';
-import LoginForm from '@/components/LoginForm/LoginForm';
+import Home from '@/components/Home/Home';
+import Footer from '@/components/Footer/Footer';
 
-const HomePage = () => {
-	return <LoginForm />;
+const HomePage = (): React.JSX.Element => {
+	return (
+		<>
+			<Home />
+			<Footer />
+		</>
+	);
 };
 
 export default HomePage;

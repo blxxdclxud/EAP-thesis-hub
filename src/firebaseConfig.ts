@@ -1,9 +1,9 @@
 // src/firebaseConfig.ts
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp, getApps, getApp, FirebaseApp } from 'firebase/app';
+import { Firestore, getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
-const firebaseConfig = {
+export const firebaseConfig = {
 	apiKey: 'AIzaSyChCVRFnkvWXjSbjS-SuHFDPknli7xqmgI',
 	authDomain: 'eap-thesis-hub.firebaseapp.com',
 	projectId: 'eap-thesis-hub',
@@ -13,8 +13,8 @@ const firebaseConfig = {
 	measurementId: 'G-QSYT83CZH2',
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const app: FirebaseApp = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+const db: Firestore = getFirestore(app);
 const auth = getAuth(app);
 
 export { db, auth };

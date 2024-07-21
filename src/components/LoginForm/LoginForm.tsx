@@ -4,17 +4,34 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebaseConfig';
 import { useRouter } from 'next/navigation';
 import styles from './LoginForm.module.css';
-
+import { getStudentByToken } from '@/lib/firestore';
+import Cookies from 'js-cookie';
+import { UserCredential } from 'firebase/auth';
+import { Student } from '@/types/student';
 const LoginForm: React.FC = () => {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [error, setError] = useState('');
+	const [email, setEmail] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
+	const [error, setError] = useState<string>('');
 	const router = useRouter();
 
 	const handleLogin = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			await signInWithEmailAndPassword(auth, email, password);
+			const userCredential: UserCredential = await signInWithEmailAndPassword(
+				auth,
+				email,
+				password,
+			);
+			const token = (await userCredential.user.uid) as string;
+
+			console.log('TOKE', token);
+
+			const studentData: Student = await getStudentByToken(token as string);
+
+			Cookies.set('token', token);
+			Cookies.set('id', studentData.id as string);
+			Cookies.set('name', studentData.name);
+
 			router.push('/students');
 		} catch (err) {
 			setError('Failed to log in. Please check your email and password.');

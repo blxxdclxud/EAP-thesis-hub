@@ -1,9 +1,11 @@
+import { Work } from '@/types/work';
+
 export interface Student {
 	id?: string;
+	token?: string;
 	name: string;
 	email: string;
 	number: string;
 	about: string;
-	labs: string[];
-	works: string[];
+	works: Work[];
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Student } from '@/types/student';
+import styles from './StudentCard.module.css';
 
 interface UserCardProps {
 	student: Student;
@@ -8,12 +9,12 @@ interface UserCardProps {
 
 const StudentCard: React.FC<UserCardProps> = ({ student }) => {
 	return (
-		<div className="user-card">
-			<div className="profile-placeholder"></div>
+		<div className={styles.userCard}>
+			<div className={styles.profilePlaceholder}></div>
 			<h2>{student.name}</h2>
 			<p>About: {student.about}</p>
 			<Link href={`/students/${student.id}`}>
-				<button>View Details</button>
+				<button className={styles.viewDetailsButton}>View Details</button>
 			</Link>
 		</div>
 	);

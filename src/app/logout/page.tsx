@@ -1,8 +1,7 @@
 import React from 'react';
-import SignupForm from '@/components/SignupForm/SignupForm';
 
 const HomePage = (): React.JSX.Element => {
-	return <SignupForm />;
+	return <></>;
 };
 
 export default HomePage;

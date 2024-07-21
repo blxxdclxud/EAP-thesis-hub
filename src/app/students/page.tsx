@@ -1,19 +1,17 @@
 'use client';
 
-import Header from '@/components/Header';
-import StudentList from '@/components/StudentList';
+import Header from '@/components/Header/Header';
+import StudentList from '@/components/StudentList/StudentList';
 import React, { useEffect, useState } from 'react';
 import { Student } from '@/types/student';
 import { getStudents } from '../../lib/firestore';
 
-// let studentsCache: Student[] | null = [];
-
-const StudentsPage = () => {
+const StudentsPage = (): React.JSX.Element => {
 	const [students, setStudents] = useState<Student[]>([]);
 
 	useEffect(() => {
 		const fetchStudents = async () => {
-			const studentsData = await getStudents();
+			const studentsData: Student[] = await getStudents();
 			setStudents(studentsData);
 		};
 
