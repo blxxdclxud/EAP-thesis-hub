@@ -1,105 +1,294 @@
+/* Container styles */
 .container {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	background-color: #f8f8f8;
+	align-items: flex-start; /* Align items at the start so container expands with content */
+	height: auto; /* Allow height to adjust based on content */
+	padding: 20px;
+	box-sizing: border-box;
+	background-color: #f0f2f5;
 }
 
+/* Form styles */
 .form {
-	background-color: #fff;
-	padding: 2rem;
-	border-radius: 8px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	background: #ffffff;
+	padding: 40px;
+	border-radius: 12px; /* Rounded corners for a soft look */
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+	max-width: 500px; /* Fixed width for a clean look */
 	width: 100%;
-	max-width: 400px;
+	text-align: center;
 }
 
-.h2 {
-	margin-bottom: 1.5rem;
-	font-size: 1.5rem;
-	color: #333;
+/* Title styles */
+.form h2 {
+	margin-bottom: 20px;
+	color: #333; /* Darker text for better readability */
+	font-size: 24px;
+	font-weight: 600; /* Bold for emphasis */
 }
 
+/* Input container styles */
 .inputContainer {
-	margin-bottom: 1rem;
+	margin-bottom: 20px;
 }
 
-.input {
-	width: 100%;
-	padding: 0.75rem;
-	margin-top: 0.5rem;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	font-size: 1rem;
-}
-
+/* Input and textarea styles */
+.input,
 .textarea {
-	width: 100%;
-	padding: 0.75rem;
-	margin-top: 0.5rem;
+	width: 100%; /* Full width */
+	padding: 15px;
 	border: 1px solid #ddd;
-	border-radius: 4px;
-	font-size: 1rem;
-	height: 100px;
+	border-radius: 8px; /* Rounded corners */
+	font-size: 16px;
+	box-sizing: border-box; /* Ensure padding is included in width */
+	transition: border-color 0.3s ease; /* Smooth border color transition */
 }
 
+.input:focus,
+.textarea:focus {
+	border-color: #4caf50; /* Highlight border on focus */
+	outline: none; /* Remove default outline */
+}
+
+/* Textarea specific styles */
+.textarea {
+	height: 120px; /* Increased height */
+	resize: vertical; /* Allow vertical resizing */
+}
+
+/* Hint styles */
+.hint {
+	font-size: 14px;
+	color: #777;
+}
+
+/* Button styles */
 .button {
-	width: 100%;
-	padding: 0.75rem;
-	background-color: #28a745;
-	color: #fff;
+	background-color: #4caf50;
+	color: white;
 	border: none;
-	border-radius: 4px;
-	font-size: 1rem;
+	padding: 15px;
 	cursor: pointer;
+	width: 100%;
+	margin-top: 10px;
+	border-radius: 8px; /* Rounded corners */
+	font-size: 16px;
+	transition:
+		background-color 0.3s ease,
+		transform 0.3s ease; /* Smooth transitions */
 }
 
 .button:hover {
-	background-color: #218838;
+	background-color: #45a049;
+	transform: scale(1.02); /* Slight scaling effect */
+}
+
+/* Error message styles */
+.error {
+	color: red;
+	margin-bottom: 20px;
+	font-size: 14px; /* Consistent font size */
+}
+
+/* Add and Remove button styles */
+.addButton,
+.removeButton {
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 8px; /* Rounded corners */
+	font-size: 20px; /* Larger font size for icons */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition:
+		background-color 0.3s ease,
+		transform 0.3s ease; /* Smooth transitions */
 }
 
 .addButton {
-	margin-top: 0.5rem;
-	padding: 0.5rem;
-	background-color: #28a745;
-	color: #fff;
-	border: none;
-	border-radius: 4px;
-	font-size: 0.875rem;
-	cursor: pointer;
+	background-color: #4caf50;
 }
 
 .addButton:hover {
-	background-color: #218838;
+	background-color: #45a049;
+	transform: scale(1.1); /* Slight scaling effect */
 }
 
 .removeButton {
-	margin-top: 0.5rem;
-	margin-left: 0.5rem;
-	padding: 0.5rem;
-	background-color: #dc3545;
-	color: #fff;
-	border: none;
-	border-radius: 4px;
-	font-size: 0.875rem;
-	cursor: pointer;
+	background-color: #ff0000;
 }
 
 .removeButton:hover {
-	background-color: #c82333;
+	background-color: #cc0000;
+	transform: scale(1.1); /* Slight scaling effect */
 }
 
-.hint {
-	font-size: 0.875rem;
-	color: #6c757d;
-}
-
-.error {
-	color: red;
-	margin-bottom: 1rem;
-}
-
+/* Work buttons container styles */
 .workButtons {
 	display: flex;
+	justify-content: center;
+	gap: 10px; /* Space between buttons */
+	margin-top: 20px;
+}
+
+/* Container styles */
+.inputContainer {
+	position: relative; /* Required for floating label effect */
+	margin-bottom: 20px;
+}
+
+/* Input and textarea styles */
+.input,
+.textarea {
+	width: 100%;
+	padding: 16px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	font-size: 16px;
+	box-sizing: border-box;
+	transition:
+		border-color 0.3s ease,
+		padding-top 0.3s ease; /* Smooth transitions */
+	background-color: #fff;
+	position: relative;
+	z-index: 1;
+}
+
+/* Floating label styles */
+.inputContainer label,
+.inputContainer .placeholder {
+	position: absolute;
+	top: 50%;
+	left: 16px;
+	font-size: 16px;
+	color: #777;
+	pointer-events: none;
+	transition: all 0.3s ease; /* Smooth transitions */
+	transform: translateY(-50%); /* Center the label vertically */
+	background-color: #fff; /* Match background color of input */
+	padding: 0 4px; /* Space for border split */
+	z-index: 2; /* Place above input */
+}
+
+/* Placeholder styles when the field is focused or filled */
+.input:focus ~ label,
+.textarea:focus ~ label,
+.input:not(:placeholder-shown) ~ label,
+.textarea:not(:placeholder-shown) ~ label {
+	top: -10px;
+	left: 12px;
+	font-size: 12px;
+	color: #4caf50;
+}
+
+/* Input border styles on focus */
+.input:focus,
+.textarea:focus {
+	border-color: #4caf50;
+}
+
+/* Placeholder text transformation */
+.input::placeholder,
+.textarea::placeholder {
+	color: transparent; /* Hide the default placeholder */
+}
+
+/* Floating label effect for better user experience */
+.inputContainer input:focus ~ label,
+.inputContainer textarea:focus ~ label,
+.inputContainer input:not(:placeholder-shown) ~ label,
+.inputContainer textarea:not(:placeholder-shown) ~ label {
+	top: -10px;
+	left: 12px;
+	font-size: 12px;
+	color: #4caf50;
+}
+
+/* Placeholder styling */
+.input::placeholder,
+.textarea::placeholder {
+	color: transparent; /* Hide default placeholder */
+}
+
+/* Container styles for work items */
+.worksContainer {
+	margin-bottom: 20px;
+}
+
+/* Label for the 'Works:' section */
+.worksLabel {
+	font-size: 16px;
+	color: #333;
+	margin-bottom: 10px;
+	display: block; /* Ensure it's on its own line */
+}
+
+/* Container for each work input */
+.workInputContainer {
+	position: relative; /* Required for floating label effect */
+	margin-bottom: 21px; /* Space between inputs */
+}
+
+/* Input fields for work items */
+.workInput {
+	width: 100%;
+	padding: 16px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	font-size: 16px;
+	box-sizing: border-box;
+	background-color: #fff;
+	position: relative;
+	z-index: 1;
+	transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+
+/* Change border color on focus */
+.workInput:focus {
+	border-color: #4caf50; /* Green border color on focus */
+	outline: none; /* Remove default outline */
+}
+
+/* Floating label styles */
+.workInputContainer label {
+	position: absolute;
+	top: 50%;
+	left: 16px;
+	font-size: 16px;
+	color: #777;
+	pointer-events: none;
+	transition: all 0.3s ease; /* Smooth transitions */
+	transform: translateY(-50%); /* Center the label vertically */
+	background-color: #fff; /* Match background color of input */
+	padding: 0 4px; /* Space for border split */
+	z-index: 2; /* Place above input */
+}
+
+/* Placeholder styles when the field is focused or filled */
+.workInput:focus ~ label,
+.workInput:not(:placeholder-shown) ~ label {
+	top: -10px;
+	left: 12px;
+	font-size: 12px;
+	color: #4caf50; /* Green color for floating label */
+}
+
+/* Placeholder text transformation */
+.workInput::placeholder {
+	color: transparent; /* Hide the default placeholder */
+}
+
+/* Add/Remove buttons styling */
+.workButtons {
+	display: flex;
+	gap: 10px;
+}
+
+/* Add padding to the container for better spacing */
+.inputContainer {
+	padding: 10px 0;
 }

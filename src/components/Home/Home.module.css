@@ -39,6 +39,9 @@
 }
 
 .mainContent {
+	padding: 3em;
+	background-color: #ffffff;
+	border-radius: 5px;
 	margin: auto;
 	text-align: center;
 }
@@ -46,10 +49,12 @@
 .mainContent h1 {
 	font-size: 3em;
 	margin-bottom: 20px;
+	color: #333333;
 }
 
 .mainContent p {
 	font-size: 1.5em;
+	color: #000;
 	margin: 20px 0;
 	line-height: 1.6;
 }

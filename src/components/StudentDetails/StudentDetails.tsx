@@ -1,14 +1,39 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { Student } from '@/types/student';
 import styles from './StudentDetails.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+import { useParams } from 'next/navigation';
+import { getStudentById } from '@/lib/firestore';
 
-interface UserDetailsProps {
-	student: Student;
-}
+const StudentDetailsPage: React.FC = () => {
+	const params = useParams();
+	const studentID: string = params.studentID as string;
+	console.log(studentID);
 
-const StudentDetailsPage: React.FC<UserDetailsProps> = ({ student }) => {
+	const [student, setStudent] = useState<Student | null>(null);
+
+	useEffect((): void => {
+		if (studentID) {
+			const fetchStudent = async (): Promise<void> => {
+				try {
+					const studentData: Student = await getStudentById(studentID as string);
+					setStudent(studentData);
+				} catch (error) {
+					console.error((error as Error).message);
+				}
+			};
+
+			fetchStudent();
+		}
+	}, [studentID]);
+
+	if (!student) {
+		return null;
+	}
+
 	return (
 		<>
 			<div>

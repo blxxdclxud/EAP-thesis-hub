@@ -1,7 +1,17 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import styles from './About.module.css';
 const About: React.FC = () => {
+	useEffect(() => {
+		document.body.classList.add('img-body');
+
+		return () => {
+			document.body.classList.remove('img-body');
+		};
+	}, []);
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.mainContent}>

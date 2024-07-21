@@ -11,8 +11,14 @@
 	margin: 0 auto;
 }
 
+.contactItems {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
 .contactItem {
-	margin: 10px 0;
+	margin: 10px 50px;
 }
 
 .contactLink {
@@ -35,5 +41,9 @@
 @media (min-width: 768px) {
 	.footer {
 		padding: 30px;
+	}
+
+	.contactItems {
+		gap: 40px;
 	}
 }

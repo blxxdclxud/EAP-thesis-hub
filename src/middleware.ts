@@ -1,7 +1,8 @@
-// middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import Cookies from 'js-cookie';
+
+const skipRoutes: string[] = ['/login', '/signup'];
+const availableForGuest: string[] = ['/', '/login', '/signup'];
 
 export async function middleware(req: NextRequest): Promise<NextResponse> {
 	const token: string = req.cookies.get('token')?.value || '';
@@ -11,29 +12,15 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
 
 	console.log(req.nextUrl.pathname);
 	console.log(token);
-	if (req.nextUrl.pathname === '/logout') {
-		// req.cookies.delete();
-		Cookies.remove('id');
-		Cookies.remove('token');
-		console.log(req.cookies.get('token')?.value || '');
-		return NextResponse.redirect(new URL('/login', req.url));
-	}
 
 	if (!token) {
-		if (req.nextUrl.pathname === '/login' || req.nextUrl.pathname === '/signup') {
+		if (availableForGuest.includes(req.nextUrl.pathname)) {
 			return NextResponse.next();
 		}
 		return NextResponse.redirect(new URL('/login', req.url));
 	}
 
-	// const user = await getStudentByToken(token);
-	//
-	// if (!user) {
-	//     console.log("NOUSER", user)
-	//     return NextResponse.redirect(new URL('/login', req.url));
-	// }
-
-	if (req.nextUrl.pathname === '/login' || req.nextUrl.pathname === '/signup') {
+	if (skipRoutes.includes(req.nextUrl.pathname)) {
 		return NextResponse.redirect(new URL('/students', req.url));
 	}
 
@@ -41,5 +28,5 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
 }
 
 export const config = {
-	matcher: ['/login', '/signup', '/students/:path*', '/logout'], // Adjust the paths you want to protect
+	matcher: ['/login', '/signup', '/students/:path*', '/'], // Adjust the paths you want to protect
 };

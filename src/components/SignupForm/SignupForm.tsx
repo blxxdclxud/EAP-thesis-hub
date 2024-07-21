@@ -11,6 +11,7 @@ import { Student } from '../../types/student';
 import { parsePhoneNumber, isValidPhoneNumber, PhoneNumber } from 'libphonenumber-js';
 import Cookies from 'js-cookie';
 import { UserCredential } from 'firebase/auth';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const SignupForm: React.FC = () => {
 	const [name, setName] = useState('');
@@ -96,103 +97,105 @@ const SignupForm: React.FC = () => {
 				<div className={styles.inputContainer}>
 					<input
 						type="text"
-						placeholder="name"
+						id="name"
+						placeholder=" "
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 						required
 						className={styles.input}
 					/>
+					<label htmlFor="name">Name</label>
 				</div>
+
 				<div className={styles.inputContainer}>
 					<input
 						type="email"
-						placeholder="email"
+						id="email"
+						placeholder=" "
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
 						className={styles.input}
 					/>
+					<label htmlFor="email">Email</label>
 				</div>
+
 				<div className={styles.inputContainer}>
 					<input
 						type="password"
-						placeholder="password"
+						id="password"
+						placeholder=" "
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						required
 						className={styles.input}
 					/>
+					<label htmlFor="password">Password</label>
 				</div>
+
 				<div className={styles.inputContainer}>
 					<input
 						type="password"
-						placeholder="password confirmation"
+						id="passwordConfirmation"
+						placeholder=" "
 						value={passwordConfirmation}
 						onChange={(e) => setPasswordConfirmation(e.target.value)}
 						required
 						className={styles.input}
 					/>
+					<label htmlFor="passwordConfirmation">Confirm Password</label>
 				</div>
+
 				<div className={styles.inputContainer}>
 					<input
 						type="text"
-						placeholder="number"
+						id="number"
+						placeholder=" "
 						value={number}
 						onChange={(e) => setNumber(e.target.value)}
 						required
 						className={styles.input}
 					/>
-					<small className={styles.hint}>
-						Phone number must be in the format +123456789
-					</small>
+					<label htmlFor="number">Phone Number</label>
 				</div>
+
 				<div className={styles.inputContainer}>
 					<textarea
-						placeholder="about"
+						id="about"
+						placeholder=" "
 						value={about}
 						onChange={(e) => setAbout(e.target.value)}
 						required
 						className={styles.textarea}
 					/>
+					<label htmlFor="about">About</label>
 				</div>
-				{/*<div className={styles.inputContainer}>*/}
-				{/*	<label>Labs:</label>*/}
-				{/*	{labs.map((lab, index) => (*/}
-				{/*		<input*/}
-				{/*			key={index}*/}
-				{/*			type="text"*/}
-				{/*			placeholder="Lab name"*/}
-				{/*			value={lab}*/}
-				{/*			onChange={(e) => handleLabChange(index, e.target.value)}*/}
-				{/*			required*/}
-				{/*			className={styles.input}*/}
-				{/*		/>*/}
-				{/*	))}*/}
-				{/*	<button type="button" onClick={addNewLab} className={styles.addButton}>Add Lab</button>*/}
-				{/*</div>*/}
-				<div className={styles.inputContainer}>
-					<label>Works:</label>
+				<div className={styles.worksContainer}>
+					<label className={styles.worksLabel}>Works:</label>
 					{works.map((work, index) => (
-						<input
-							key={index}
-							type="text"
-							placeholder="Work title"
-							value={work.title}
-							onChange={(e) => handleWorkChange(index, e.target.value)}
-							required
-							className={styles.input}
-						/>
+						<div key={index} className={styles.workInputContainer}>
+							<input
+								type="text"
+								id={`work-${index}`}
+								placeholder=" "
+								value={work.title}
+								onChange={(e) => handleWorkChange(index, e.target.value)}
+								required
+								className={styles.workInput}
+							/>
+							<label htmlFor={`work-${index}`}>Work title</label>
+						</div>
 					))}
 					<div className={styles.workButtons}>
 						<button type="button" onClick={addNewWork} className={styles.addButton}>
-							Add Work
+							<i className="fas fa-plus"></i> {/* FontAwesome + icon */}
 						</button>
 						<button
 							type="button"
 							onClick={removeLastWork}
 							className={styles.removeButton}
 						>
-							Remove Last Work
+							<i className="fas fa-minus"></i> {/* FontAwesome - icon */}
 						</button>
 					</div>
 				</div>

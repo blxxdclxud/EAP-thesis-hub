@@ -1,30 +1,19 @@
-'use client';
-
 import Header from '@/components/Header/Header';
 import StudentList from '@/components/StudentList/StudentList';
-import React, { useEffect, useState } from 'react';
-import { Student } from '@/types/student';
-import { getStudents } from '../../lib/firestore';
+import React from 'react';
+
+export const metadata = {
+	title: 'All Students',
+	description:
+		'Here are listed all students registered in the system. ' +
+		'Click `View details` to check information about one of them.',
+};
 
 const StudentsPage = (): React.JSX.Element => {
-	const [students, setStudents] = useState<Student[]>([]);
-
-	useEffect(() => {
-		const fetchStudents = async () => {
-			const studentsData: Student[] = await getStudents();
-			setStudents(studentsData);
-		};
-
-		// studentsCache = students;
-		fetchStudents();
-	}, []);
-
-	console.log(students);
-
 	return (
 		<div>
 			<Header />
-			<StudentList students={students} />
+			<StudentList />
 		</div>
 	);
 };

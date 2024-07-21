@@ -1,8 +1,18 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import styles from './Home.module.css';
 
 const Home: React.FC = () => {
+	useEffect(() => {
+		document.body.classList.add('img-body');
+
+		return () => {
+			document.body.classList.remove('img-body');
+		};
+	}, []);
+
 	return (
 		<div className={styles.container}>
 			<header className={styles.header}>
