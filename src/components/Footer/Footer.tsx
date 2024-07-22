@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'; // Import FontAwesome CS
 
 const Footer: React.FC = () => {
 	return (
-		<footer className={styles.footer}>
+		<footer id="footer" className={styles.footer}>
 			<div className={styles.contactInfo}>
 				<h3>Contact Us</h3>
 				<div className={styles.contactItems}>

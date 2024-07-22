@@ -1,9 +1,12 @@
 .footer {
 	background-color: #4caf50;
 	color: white;
-	padding: 20px;
+	padding: 10px;
 	text-align: center;
 	position: relative;
+	width: 100%;
+	box-sizing: border-box;
+	z-index: 1000;
 }
 
 .contactInfo {
@@ -14,12 +17,12 @@
 .contactItems {
 	display: flex;
 	justify-content: center;
-	gap: 20px;
-	flex-wrap: wrap; /* Allow wrapping for smaller screens */
+	gap: 10px;
+	flex-wrap: wrap;
 }
 
 .contactItem {
-	margin: 10px 50px;
+	margin: 5px 50px;
 }
 
 .contactLink {
@@ -41,26 +44,26 @@
 
 @media (max-width: 600px) {
 	.footer {
-		padding: 15px; /* Adjust padding for smaller screens */
+		padding: 10px;
 	}
 
 	.contactItems {
-		flex-direction: column; /* Stack contact items vertically */
-		align-items: center; /* Center align contact items */
-		gap: 10px; /* Reduce gap between items */
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
 	}
 
 	.contactItem {
-		margin: 10px 0; /* Adjust margin for better spacing */
+		margin: 0 0 10px;
 	}
 }
 
 @media (min-width: 768px) {
 	.footer {
-		padding: 30px;
+		padding: 10px;
 	}
 
 	.contactItems {
-		gap: 40px;
+		gap: 10px;
 	}
 }
