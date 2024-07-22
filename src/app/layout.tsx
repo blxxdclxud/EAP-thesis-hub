@@ -1,9 +1,10 @@
 import React from 'react';
 import '../styles/globals.css';
-import ico from '../../public/favicon.ico';
 
 export const metadata = {
-	icon: ico,
+	icons: {
+		icon: './favicon.ico',
+	},
 	authors: [
 		{ name: 'Ramazan Nazmiev' },
 		{ name: 'Rail Sharipov' },

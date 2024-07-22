@@ -1,68 +1,95 @@
 .header {
-	background-color: #4caf50;
-	padding: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between; /* Use space-between to position items at both ends */
+    background-color: #4caf50;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 .pic {
-	margin-left: 1em;
-	width: 30px;
-	height: 30px;
-	margin-right: 10px;
-	position: relative;
+    margin-left: 1em;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    position: relative;
 }
 
 .nav {
-	display: flex;
-	gap: 20px;
-	flex-grow: 1;
-	justify-content: center;
+    display: flex;
+    gap: 20px;
+    flex-grow: 1;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 .nav a {
-	margin: 0 10px;
-	color: white;
-	text-decoration: none;
-	transition:
-		color 0.3s,
-		transform 0.3s;
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    transition:
+        color 0.3s,
+        transform 0.3s;
 }
 
 .nav a:hover {
-	color: #3f572c;
-	transform: scale(1.1);
+    color: #3f572c;
+    transform: scale(1.1);
 }
 
 .pic .homeIcon {
-	color: #ddd;
-	transition:
-		color 0.3s,
-		transform 0.3s;
+    width: 100%;
+    height: 100%;
+    color: #ddd;
+    transition:
+        color 0.3s,
+        transform 0.3s;
 }
 
 .pic .homeIcon:hover {
-	color: #3f572c;
-	transform: scale(1.1);
+    color: #3f572c;
+    transform: scale(1.1);
 }
 
-/* Styles for logout icon */
 .logout {
-	margin-right: 1em;
-	width: 30px;
-	height: 30px;
-	position: relative;
+    margin-right: 1em;
+    width: 30px;
+    height: 30px;
+    position: relative;
 }
 
 .logoutIcon {
-	color: #ddd;
-	transition:
-		color 0.3s,
-		transform 0.3s;
+    width: 100%;
+    height: 100%;
+    color: #ddd;
+    transition:
+        color 0.3s,
+        transform 0.3s;
 }
 
 .logoutIcon:hover {
-	color: #3f572c;
-	transform: scale(1.1);
+    color: #3f572c;
+    transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the start */
+        padding: 10px;
+    }
+
+    .nav {
+        justify-content: flex-start; /* Align nav links to the start */
+        width: 100%; /* Make nav take full width */
+        margin-top: 10px; /* Add margin to separate from other items */
+    }
+
+    .nav a {
+        margin: 5px 0; /* Adjust margin for better spacing */
+    }
+
+    .pic, .logout {
+        margin: 10px 0; /* Add margin for better spacing */
+    }
 }

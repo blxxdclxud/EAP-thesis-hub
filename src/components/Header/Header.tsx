@@ -3,9 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'; // Import logout icon
-import styles from './Header.module.css';
+import { faHouse, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import Cookies from 'js-cookie';
+import styles from './Header.module.css';
 
 const Header: React.FC = () => {
 	const handleLogout = () => {
