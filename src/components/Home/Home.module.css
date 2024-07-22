@@ -76,7 +76,7 @@
 
 .button {
 	margin: 0 auto;
-	padding: 15px 90px;
+	padding: 1.1em 3.8em;
 	border-radius: 5px;
 	text-decoration: none;
 	font-size: 1.2em;
@@ -121,10 +121,6 @@
 		text-align: left;
 		margin: auto;
 		max-width: 600px;
-	}
-
-	.mainContent h1 {
-		font-size: 2em;
 	}
 }
 
