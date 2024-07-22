@@ -1,66 +1,66 @@
 .footer {
-    background-color: #4caf50;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    position: relative;
+	background-color: #4caf50;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	position: relative;
 }
 
 .contactInfo {
-    max-width: 600px;
-    margin: 0 auto;
+	max-width: 600px;
+	margin: 0 auto;
 }
 
 .contactItems {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 .contactItem {
-    margin: 10px 50px;
+	margin: 10px 50px;
 }
 
 .contactLink {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+	color: white;
+	text-decoration: none;
+	font-size: 1.2em;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .contactLink i {
-    font-size: 1.5em;
+	font-size: 1.5em;
 }
 
 .contactLink:hover {
-    color: #e0e0e0;
+	color: #e0e0e0;
 }
 
 @media (max-width: 600px) {
-    .footer {
-        padding: 15px; /* Adjust padding for smaller screens */
-    }
+	.footer {
+		padding: 15px; /* Adjust padding for smaller screens */
+	}
 
-    .contactItems {
-        flex-direction: column; /* Stack contact items vertically */
-        align-items: center; /* Center align contact items */
-        gap: 10px; /* Reduce gap between items */
-    }
+	.contactItems {
+		flex-direction: column; /* Stack contact items vertically */
+		align-items: center; /* Center align contact items */
+		gap: 10px; /* Reduce gap between items */
+	}
 
-    .contactItem {
-        margin: 10px 0; /* Adjust margin for better spacing */
-    }
+	.contactItem {
+		margin: 10px 0; /* Adjust margin for better spacing */
+	}
 }
 
 @media (min-width: 768px) {
-    .footer {
-        padding: 30px;
-    }
+	.footer {
+		padding: 30px;
+	}
 
-    .contactItems {
-        gap: 40px;
-    }
+	.contactItems {
+		gap: 40px;
+	}
 }
