@@ -49,8 +49,8 @@ const ResearchList = () => {
 			try {
 				await deleteDoc(doc(db, 'researches', id));
 				setResearches(researches.filter((research) => research.id !== id));
-			} catch (error: string) {
-				setError(`Error deleting research: ${error.message}`);
+			} catch (error) {
+				setError('Error deleting research: ' + error.message);
 			}
 		}
 	};
