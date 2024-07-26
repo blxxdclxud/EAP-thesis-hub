@@ -1,0 +1,49 @@
+/* components/ResearchList/ResearchList.module.css */
+.container {
+	padding: 20px;
+}
+
+.addButton {
+	background-color: #00a651;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.research {
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	padding: 20px;
+	margin: 10px 0;
+}
+
+.changeButton,
+.deleteButton {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.changeButton {
+	background-color: #ccc;
+	margin-right: 10px;
+}
+
+.deleteButton {
+	background-color: red;
+	color: white;
+}
+
+.main input {
+	margin: 5px 0;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.error {
+	color: red;
+}
