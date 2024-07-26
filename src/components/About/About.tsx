@@ -1,8 +1,10 @@
+// About.tsx
 'use client';
 
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import styles from './About.module.css';
+
 const About: React.FC = () => {
 	useEffect(() => {
 		document.body.classList.add('img-body');
@@ -29,6 +31,7 @@ const About: React.FC = () => {
 					</Link>
 				</div>
 			</div>
+			{/* Footer component here, assuming it's included at the bottom of the container */}
 		</div>
 	);
 };
